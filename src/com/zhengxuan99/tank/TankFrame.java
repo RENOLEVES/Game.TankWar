@@ -2,13 +2,15 @@ package com.zhengxuan99.tank;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TankFrame extends Frame {
 
     //新建主战坦克
     Tank myTank = new Tank(200, 200, Dir.DOWN,this);
-    Bullets b = new Bullets(200, 200, Dir.DOWN);
-    private static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
+    List<Bullets> bullets = new ArrayList<>();
+    static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
 
     public TankFrame() {
         setSize(GAME_WIDTH, GAME_HEIGHT);
@@ -43,8 +45,13 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
+
+
+        g.drawString("子弹的数量:"+ bullets.size(),10,60);
         myTank.paint(g);
-        b.paint(g);
+        for(int i = 0 ; i<bullets.size();i++){
+            bullets.get(i).paint(g);
+        }
     }
 
     class MyKeyListener extends KeyAdapter {
