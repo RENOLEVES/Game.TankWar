@@ -11,10 +11,10 @@ public class ResourceMgr {
 
     static {
         try {
-            GoodTankL = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/GoodTank.jpg"));
-            GoodTankU = ImageUtil.rotateImage(GoodTankU, 180);
-            GoodTankD = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/GoodTank.jpg"));
-            GoodTankR = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/GoodTank.jpg"));
+            GoodTankU = ImageIO.read(Objects.requireNonNull(Tank.class.getClassLoader().getResourceAsStream("image/GoodTank.jpg")));
+            GoodTankD = ImageUtil.rotateImage(GoodTankU, 180);
+            GoodTankL = ImageUtil.rotateImage(GoodTankU, -90);
+            GoodTankR = ImageUtil.rotateImage(GoodTankU, 90);
 
         } catch (IOException e) {
             e.printStackTrace();
