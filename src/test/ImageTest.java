@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,6 +18,8 @@ public class ImageTest {
             BufferedImage image = ImageIO.read(new File(""));
             //assert断言（判断条件是否通过）
             assertNotNull(image);
+
+            BufferedImage image2 = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/bullet.gif"));
         } catch (IOException e) {
             e.printStackTrace();
         }
