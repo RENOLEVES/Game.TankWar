@@ -5,6 +5,7 @@ import java.awt.*;
 public class Bullets {
     private static final int SPEED = 20;
     private static final int WIDTH = 5 , HEIGHT = 10;
+    private  Group group;
     TankFrame tf = null;
 
     private  Dir dir;
@@ -12,11 +13,11 @@ public class Bullets {
 
     private boolean live = true;
 
-    public Bullets(int x, int y,Dir dir, TankFrame tf) {
+    public Bullets(int x, int y,Dir dir,Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.tf = tf;
+        this.group = group;
     }
 
     public void paint(Graphics g){
@@ -54,4 +55,21 @@ public class Bullets {
             }
     }
 
+    public void die() {
+        this.setLive(false);
+    }
+
+    private void boundsCheck() {
+        if (x < 0 || y < 30 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
+            live = false;
+        }
+    }
+
+    public boolean isLive() {
+        return live;
+    }
+
+    public void setLive(boolean live) {
+        this.live = live;
+    }
 }

@@ -7,6 +7,8 @@ import java.util.List;
 
 public class TankFrame extends Frame {
 
+    public static final TankFrame INSTANCE = new TankFrame();
+
     //新建主战坦克
     Tank myTank = new Tank(200, 200, Dir.DOWN,this);
     List<Bullets> bullets = new ArrayList<>();
@@ -51,6 +53,26 @@ public class TankFrame extends Frame {
         myTank.paint(g);
         for(int i = 0 ; i<bullets.size();i++){
             bullets.get(i).paint(g);
+        }
+    }
+
+    void add(Bullets bullet){
+        this.bullets.add(bullet);
+    }
+    @Override
+    public void paint(Graphics g) {
+        //System.out.println("paint"); 系统传递的一只画笔
+        //g.fillRect( x,y,50,50);
+        myTank.paint(g);
+
+        for (int i=0;i<bullets.size(); i++ ){
+            bullets.get(i).collidesWithTank(enemy);
+
+            if(!bullets.get(i).isLive())
+                bullets.remove(i);
+            else {
+                bullets.get(i).paint(g);
+            }
         }
     }
 
