@@ -37,7 +37,23 @@ public class Tank {
     }
 
     public void paint(Graphics g) {
-        g.fillRect(x, y, 50, 50);
+        switch (dir) {
+            case UP:
+                g.drawImage(ResourceMgr.GoodTankU, x, y, null);
+                break;
+            case DOWN:
+                g.drawImage(ResourceMgr.GoodTankD, x, y, null);
+                break;
+            case RIGHT:
+                g.drawImage(ResourceMgr.GoodTankR, x, y, null);
+                break;
+            case LEFT:
+                g.drawImage(ResourceMgr.GoodTankL, x, y, null);
+                break;
+
+        }
+
+
         move();
     }
 
@@ -62,7 +78,7 @@ public class Tank {
     }
 
     public void fire() {
-        tf.bullets.add(new Bullets(this.x,this.y,this.dir,this.tf));
+        tf.bullets.add(new Bullets(this.x, this.y, this.dir, this.tf));
     }
 
 

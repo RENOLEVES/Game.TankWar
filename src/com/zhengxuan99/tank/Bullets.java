@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Bullets {
     private static final int SPEED = 20;
-    private static final int WIDTH = 5 , HEIGHT = 5;
+    private static final int WIDTH = 15 , HEIGHT = 15;
     TankFrame tf = null;
 
     private  Dir dir;
