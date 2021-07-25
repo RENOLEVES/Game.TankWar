@@ -9,8 +9,10 @@ import java.util.List;
 public class TankFrame extends Frame {
 
     //新建主战坦克
-    Tank myTank = new Tank(200, 200, Dir.DOWN,this);
+    Tank myTank = new Tank(200, 200, Dir.DOWN, this);
     List<Bullets> bullets = new ArrayList<>();
+    List<Enemy> enemies = new ArrayList<>();
+
     static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
 
     public TankFrame() {
@@ -30,31 +32,36 @@ public class TankFrame extends Frame {
 
     //双缓冲
     Image offScreenImage = null;
+
     @Override
-    public void update(Graphics g){
-        if(offScreenImage == null){
+    public void update(Graphics g) {
+        if (offScreenImage == null) {
             offScreenImage = this.createImage(GAME_WIDTH, GAME_HEIGHT);
         }
         Graphics gOffscreen = offScreenImage.getGraphics();
         Color c = gOffscreen.getColor();
         gOffscreen.setColor(Color.WHITE);
-        gOffscreen.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
+        gOffscreen.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
         gOffscreen.setColor(c);
         paint(gOffscreen);
-        g.drawImage(offScreenImage,0,0,null);
+        g.drawImage(offScreenImage, 0, 0, null);
     }
 
     @Override
     public void paint(Graphics g) {
-        g.drawString("子弹的数量:"+ bullets.size(),10,60);
+        g.drawString("子弹的数量:" + bullets.size(), 10, 60);
         myTank.paint(g);
 
-        for(int i = 0 ; i<bullets.size();i++){
+        for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).paint(g);
+        }
+        for (int i = 0; i < 5; i++) {
+            enemies.add(new Enemy(50+ i*150,50,Dir.DOWN,this));
+            enemies.get(i).paint(g);
         }
     }
 
-    void add(Bullets bullet){
+    void add(Bullets bullet) {
         this.bullets.add(bullet);
     }
 
@@ -104,9 +111,9 @@ public class TankFrame extends Frame {
                 case KeyEvent.VK_DOWN:
                     bD = false;
                     break;
-                case KeyEvent.VK_CONTROL:;
+                case KeyEvent.VK_CONTROL:
                     myTank.fire();
-                break;
+                    break;
                 default:
                     break;
             }
