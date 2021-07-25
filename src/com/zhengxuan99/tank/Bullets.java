@@ -4,7 +4,8 @@ import java.awt.*;
 
 public class Bullets {
     private static final int SPEED = 20;
-    private static final int WIDTH = 15, HEIGHT = 15;
+    public static final int WIDTH = ResourceMgr.BulletU.getWidth();
+    public static final int HEIGHT = ResourceMgr.BulletU.getHeight();
     TankFrame tf = null;
 
     private Dir dir;
