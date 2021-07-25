@@ -2,6 +2,7 @@ package com.zhengxuan99.tank;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,22 +60,6 @@ public class TankFrame extends Frame {
     void add(Bullets bullet){
         this.bullets.add(bullet);
     }
-    @Override
-    public void paint(Graphics g) {
-        //System.out.println("paint"); 系统传递的一只画笔
-        //g.fillRect( x,y,50,50);
-        myTank.paint(g);
-
-        for (int i=0;i<bullets.size(); i++ ){
-            bullets.get(i).collidesWithTank(enemy);
-
-            if(!bullets.get(i).isLive())
-                bullets.remove(i);
-            else {
-                bullets.get(i).paint(g);
-            }
-        }
-    }
 
     class MyKeyListener extends KeyAdapter {
         boolean bL = false;
@@ -122,9 +107,9 @@ public class TankFrame extends Frame {
                 case KeyEvent.VK_DOWN:
                     bD = false;
                     break;
-                case KeyEvent.VK_CONTROL:
+                case KeyEvent.VK_CONTROL:;
                     myTank.fire();
-                    break;
+                break;
                 default:
                     break;
             }
