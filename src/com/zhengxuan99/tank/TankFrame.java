@@ -59,6 +59,10 @@ public class TankFrame extends Frame {
             enemies.add(new Enemy(50+ i*150,50,Dir.DOWN,this));
             enemies.get(i).paint(g);
         }
+        for (int i=0;i<bullets.size();i++){
+            for(int j= 0;j<enemies.size();j++)
+                bullets.get(i).collidewith(enemies.get(j));
+        }
     }
 
     void add(Bullets bullet) {
