@@ -2,7 +2,24 @@ package com.zhengxuan99.tank;
 
 import java.awt.*;
 
+
 public class Tank {
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     private int x, y;
     private Dir dir = Dir.DOWN;
     private static final int SPEED = 6;
@@ -12,6 +29,7 @@ public class Tank {
 
     private boolean moving = false;
     private TankFrame tf = null;
+    private boolean living = true;
 
     public Group getGroup() {
         return group;
@@ -40,6 +58,10 @@ public class Tank {
         this.dir = dir;
     }
 
+    public void die() {
+        this.living = false;
+    }
+
 
     public Tank(int x, int y, Dir dir, Group group , TankFrame tf) {
         super();
@@ -51,6 +73,7 @@ public class Tank {
     }
 
     public void paint(Graphics g) {
+        if(!living) tf.myTank.paint(null);
         switch (dir) {
             case UP:
                 g.drawImage(ResourceMgr.GoodTankU, x, y, null);

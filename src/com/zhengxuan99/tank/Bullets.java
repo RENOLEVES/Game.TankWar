@@ -85,6 +85,17 @@ public class Bullets {
             this.die();
         }
     }
+    public void collidewith(Tank mytank) {
+        if(this.group == mytank.getGroup()) return;
+
+        //TODO:用一个rect来记录子弹的位置
+        Rectangle rect1 = new Rectangle(x,y,WIDTH,HEIGHT);
+        Rectangle rect2 = new Rectangle(mytank.getX(),mytank.getY(),Enemy.WIDTH,Enemy.HEIGHT);
+        if(rect1.intersects(rect2)){
+            mytank.die();
+            this.die();
+        }
+    }
 
     private void die() {
         this.living = false;

@@ -9,7 +9,7 @@ import java.util.List;
 public class TankFrame extends Frame {
 
     //新建主战坦克
-    Tank myTank = new Tank(200, 200, Dir.DOWN,Group.GOOD, this);
+    Tank myTank = new Tank(200, 400, Dir.DOWN,Group.GOOD, this);
     List<Bullets> bullets = new ArrayList<>();
     List<Enemy> enemies = new ArrayList<>();
 
@@ -62,6 +62,9 @@ public class TankFrame extends Frame {
         for (int i=0;i<bullets.size();i++){
             for(int j= 0;j<enemies.size();j++)
                 bullets.get(i).collidewith(enemies.get(j));
+        }
+        for (int i=0;i<bullets.size();i++){
+                bullets.get(i).collidewith(myTank);
         }
     }
 
