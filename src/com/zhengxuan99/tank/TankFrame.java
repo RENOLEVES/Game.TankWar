@@ -9,7 +9,7 @@ import java.util.List;
 public class TankFrame extends Frame {
 
     //新建主战坦克
-    Tank myTank = new Tank(200, 200, Dir.DOWN, this);
+    Tank myTank = new Tank(200, 200, Dir.DOWN,Group.GOOD, this);
     List<Bullets> bullets = new ArrayList<>();
     List<Enemy> enemies = new ArrayList<>();
 
@@ -50,13 +50,13 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         g.drawString("子弹的数量:" + bullets.size(), 10, 60);
+        g.drawString("敌人的数量:" + enemies.size(), 10, 80);
         myTank.paint(g);
 
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).paint(g);
         }
-        for (int i = 0; i < 5; i++) {
-            enemies.add(new Enemy(50+ i*150,50,Dir.DOWN,this));
+        for (int i = 0; i < enemies.size(); i++) {
             enemies.get(i).paint(g);
         }
         for (int i=0;i<bullets.size();i++){
@@ -122,6 +122,7 @@ public class TankFrame extends Frame {
                     break;
             }
             setMainTankDir();
+
         }
 
         private void setMainTankDir() {

@@ -12,12 +12,14 @@ public class Bullets {
     private int x, y;
 
     private boolean living = true;
+    private Group group = Group.BAD;
 
 
-    public Bullets(int x, int y, Dir dir, TankFrame tf) {
+    public Bullets(int x, int y, Dir dir, Group group,TankFrame tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.group = group;
         this.tf = tf;
     }
 
@@ -72,11 +74,14 @@ public class Bullets {
         }
     }
 
-    public void collidewith(Enemy enemy) {
+    public void collidewith(Enemy enemies) {
+        if(this.group == enemies.getGroup()) return;
+
+        //TODO:用一个rect来记录子弹的位置
         Rectangle rect1 = new Rectangle(x,y,WIDTH,HEIGHT);
-        Rectangle rect2 = new Rectangle(enemy.getX(),enemy.getY(),Enemy.WIDTH,Enemy.HEIGHT);
+        Rectangle rect2 = new Rectangle(enemies.getX(),enemies.getY(),Enemy.WIDTH,Enemy.HEIGHT);
         if(rect1.intersects(rect2)){
-            enemy.die();
+            enemies.die();
             this.die();
         }
     }
