@@ -63,6 +63,8 @@ public class TankFrame extends Frame {
             for(int j= 0;j<enemies.size();j++)
                 bullets.get(i).collidewith(enemies.get(j));
         }
+
+        //碰撞检测collision detect
         for (int i=0;i<bullets.size();i++){
                 bullets.get(i).collidewith(myTank);
         }

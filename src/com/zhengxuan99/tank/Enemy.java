@@ -63,13 +63,33 @@ public class Enemy {
             }
         }
 
-        if(random.nextInt(10)>8) this.enemyfire();
+        if(random.nextInt(100)>95) this.enemyfire();
+        randomDir();
+    }
+
+    private void randomDir() {
+        if(random.nextInt(100)>80)
+        this.dir = Dir.values()[random.nextInt(4)];
     }
 
 
     public void paint(Graphics g) {
         if (!living) tf.enemies.remove(this);
-        g.drawImage(ResourceMgr.BadTankD, x, y, null);
+        switch (dir) {
+            case UP:
+                g.drawImage(ResourceMgr.BadTankU, x, y, null);
+                break;
+            case DOWN:
+                g.drawImage(ResourceMgr.BadTankD, x, y, null);
+                break;
+            case RIGHT:
+                g.drawImage(ResourceMgr.BadTankR, x, y, null);
+                break;
+            case LEFT:
+                g.drawImage(ResourceMgr.BadTankL, x, y, null);
+                break;
+
+        }
         move();
     }
 

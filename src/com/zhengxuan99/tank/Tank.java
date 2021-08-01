@@ -73,7 +73,6 @@ public class Tank {
     }
 
     public void paint(Graphics g) {
-        if(!living) tf.myTank.paint(null);
         switch (dir) {
             case UP:
                 g.drawImage(ResourceMgr.GoodTankU, x, y, null);
@@ -109,7 +108,7 @@ public class Tank {
                     break;
                 case DOWN:
                     y += SPEED;
-                    break;
+                    break; 
             }
         }
     }
@@ -119,6 +118,4 @@ public class Tank {
         int bY = this.y + Tank.HEIGHT/2 - Bullets.HEIGHT/2;
         tf.bullets.add(new Bullets( bX, bY, this.dir ,this.group, this.tf));
     }
-
-
 }
