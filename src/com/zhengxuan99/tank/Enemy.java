@@ -7,7 +7,10 @@ public class Enemy {
     private Dir dir;
     private int x, y;
     private int SPEED = 6;
+
     TankFrame tf = null;
+    Rectangle rect = new Rectangle();
+
     private Random random = new Random();
     public static final int WIDTH = ResourceMgr.BadTankD.getWidth();
     public static final int HEIGHT = ResourceMgr.BadTankD.getHeight();
@@ -36,12 +39,17 @@ public class Enemy {
         this.living = false;
     }
 
-    public Enemy(int x, int y, Dir dir,Group group, TankFrame tf) {
+    public Enemy(int x, int y, Dir dir, Group group, TankFrame tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.group = group;
         this.tf = tf;
+
+        rect.x = this.x;
+        rect.y = this.y;
+        rect.width = WIDTH;
+        rect.height = HEIGHT;
     }
 
     public void move() {
@@ -63,13 +71,26 @@ public class Enemy {
             }
         }
 
-        if(random.nextInt(100)>95) this.enemyfire();
+        if (random.nextInt(100) > 95) this.enemyfire();
         randomDir();
+        boundsCheck();
+
+        rect.x = this.x;
+        rect.y = this.y;
+    }
+
+    private void boundsCheck() {
+        if (x < 12) x = 12;
+        if (y < 34) y = 34;
+        if (x > TankFrame.GAME_WIDTH - ResourceMgr.BadTankU.getWidth()-12)
+            x = TankFrame.GAME_WIDTH -  ResourceMgr.BadTankU.getWidth()-12;
+        if (y > TankFrame.GAME_HEIGHT - ResourceMgr.BadTankU.getHeight()-12)
+            y = TankFrame.GAME_HEIGHT - ResourceMgr.BadTankU.getHeight()-12;
     }
 
     private void randomDir() {
-        if(random.nextInt(100)>80)
-        this.dir = Dir.values()[random.nextInt(4)];
+        if (random.nextInt(100) > 80)
+            this.dir = Dir.values()[random.nextInt(4)];
     }
 
 
@@ -90,12 +111,15 @@ public class Enemy {
                 break;
 
         }
+
         move();
+
+
     }
 
     public void enemyfire() {
-        int bX = this.x + Enemy.WIDTH/2 - Bullets.WIDTH/2;
-        int bY = this.y + Enemy.HEIGHT/2 - Bullets.HEIGHT/2;
-        tf.bullets.add(new Bullets( bX, bY, this.dir ,this.group, this.tf));
+        int bX = this.x + Enemy.WIDTH / 2 - Bullets.WIDTH / 2;
+        int bY = this.y + Enemy.HEIGHT / 2 - Bullets.HEIGHT / 2;
+        tf.bullets.add(new Bullets(bX, bY, this.dir, this.group, this.tf));
     }
 }

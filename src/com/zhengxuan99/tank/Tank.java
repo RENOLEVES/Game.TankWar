@@ -24,6 +24,8 @@ public class Tank {
     private Dir dir = Dir.DOWN;
     private static final int SPEED = 6;
 
+    Rectangle rect = new Rectangle();
+
     public static final int WIDTH = ResourceMgr.GoodTankU.getWidth();
     public static final int HEIGHT = ResourceMgr.GoodTankU.getHeight();
 
@@ -70,6 +72,11 @@ public class Tank {
         this.dir = dir;
         this.group = group;
         this.tf = tf;
+
+        rect.x = this.x;
+        rect.y = this.y;
+        rect.width = WIDTH;
+        rect.height = HEIGHT;
     }
 
     public void paint(Graphics g) {
@@ -111,7 +118,22 @@ public class Tank {
                     break; 
             }
         }
+
+        boundsCheck();
+
+        rect.x = this.x;
+        rect.y = this.y;
     }
+
+        private void boundsCheck() {
+            if (x < 12) x = 12;
+            if (y < 34) y = 34;
+            if (x > TankFrame.GAME_WIDTH - ResourceMgr.GoodTankU.getWidth() -12)
+                x = TankFrame.GAME_WIDTH -  ResourceMgr.GoodTankU.getWidth() -12;
+            if (y > TankFrame.GAME_HEIGHT - ResourceMgr.GoodTankU.getHeight()-12)
+                y = TankFrame.GAME_HEIGHT - ResourceMgr.GoodTankU.getHeight()-12;
+        }
+
 
     public void fire() {
         int bX = this.x + Tank.WIDTH/2 - Bullets.WIDTH/2;

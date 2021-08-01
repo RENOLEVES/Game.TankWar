@@ -8,6 +8,8 @@ public class Bullets {
     public static final int HEIGHT = ResourceMgr.BulletU.getHeight();
     TankFrame tf = null;
 
+    Rectangle rect = new Rectangle();
+
     private Dir dir;
     private int x, y;
 
@@ -21,6 +23,11 @@ public class Bullets {
         this.dir = dir;
         this.group = group;
         this.tf = tf;
+
+        rect.x = this.x;
+        rect.y = this.y;
+        rect.width = WIDTH;
+        rect.height = HEIGHT;
     }
 
 
@@ -72,6 +79,10 @@ public class Bullets {
         if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
             living = false;
         }
+
+        //update rect
+        rect.x = this.x;
+        rect.y = this.y;
     }
 
     public void collidewith(Enemy enemies) {
