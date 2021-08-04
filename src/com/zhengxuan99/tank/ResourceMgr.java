@@ -12,12 +12,12 @@ public class ResourceMgr {
 
     static {
         try {
-            GoodTankU = ImageIO.read(Objects.requireNonNull(Tank.class.getClassLoader().getResourceAsStream("images/GoodTank.jpg")));
+            GoodTankU = ImageIO.read(Objects.requireNonNull(Tank.class.getClassLoader().getResourceAsStream("images/GoodTank.PNG")));
             GoodTankD = ImageUtil.rotateImage(GoodTankU, 180);
             GoodTankL = ImageUtil.rotateImage(GoodTankU, -90);
             GoodTankR = ImageUtil.rotateImage(GoodTankU, 90);
 
-            BadTankU = ImageIO.read(Objects.requireNonNull(Tank.class.getClassLoader().getResourceAsStream("images/BadTank.jpg")));
+            BadTankU = ImageIO.read(Objects.requireNonNull(Tank.class.getClassLoader().getResourceAsStream("images/BadTank.PNG")));
             BadTankD = ImageUtil.rotateImage(BadTankU, 180);
             BadTankL = ImageUtil.rotateImage(BadTankU, -90);
             BadTankR = ImageUtil.rotateImage(BadTankU, 90);
