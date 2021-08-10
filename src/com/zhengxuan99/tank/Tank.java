@@ -3,7 +3,7 @@ package com.zhengxuan99.tank;
 import java.awt.*;
 
 
-public class Tank {
+public abstract class Tank {
     public int getX() {
         return x;
     }
@@ -20,8 +20,8 @@ public class Tank {
         this.y = y;
     }
 
-    private int x, y;
-    private Dir dir = Dir.DOWN;
+    int x, y;
+    Dir dir = Dir.DOWN;
     private static final int SPEED = 6;
 
     Rectangle rect = new Rectangle();
@@ -30,19 +30,18 @@ public class Tank {
     public static final int HEIGHT = ResourceMgr.GoodTankU.getHeight();
 
     private boolean moving = false;
-    private TankFrame tf = null;
+    TankFrame tf = null;
     private boolean living = true;
 
     public Group getGroup() {
         return group;
     }
-
     public void setGroup(Group group) {
         this.group = group;
     }
+    Group group = Group.BAD;
 
-    private Group group = Group.GOOD;
-
+    FireStrategy fs = new DefaultFireStrategy();
 
     public boolean isMoving() {
         return moving;
@@ -77,6 +76,10 @@ public class Tank {
         rect.y = this.y;
         rect.width = WIDTH;
         rect.height = HEIGHT;
+    }
+
+    public void fire (FireStrategy) {
+
     }
 
     public void paint(Graphics g) {
@@ -134,10 +137,4 @@ public class Tank {
                 y = TankFrame.GAME_HEIGHT - ResourceMgr.GoodTankU.getHeight()-12;
         }
 
-
-    public void fire() {
-        int bX = this.x + Tank.WIDTH/2 - Bullets.WIDTH/2;
-        int bY = this.y + Tank.HEIGHT/2 - Bullets.HEIGHT/2;
-        tf.bullets.add(new Bullets( bX, bY, this.dir ,this.group, this.tf));
-    }
 }
