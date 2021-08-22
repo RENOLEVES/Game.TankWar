@@ -1,9 +1,10 @@
 package com.zhengxuan99.tank;
 
 import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
 
 
-public abstract class Tank {
+public class Tank {
     public int getX() {
         return x;
     }
@@ -41,7 +42,7 @@ public abstract class Tank {
     }
     Group group = Group.BAD;
 
-    FireStrategy fs = new DefaultFireStrategy();
+    FireStrategy fs;
 
     public boolean isMoving() {
         return moving;
@@ -76,10 +77,20 @@ public abstract class Tank {
         rect.y = this.y;
         rect.width = WIDTH;
         rect.height = HEIGHT;
+
+        String goodFSName = (String) PropertyMgr.get("goodFS");
+        //System.out.println(goodFSName);
+
+        try {
+            fs = (FireStrategy)Class.forName(goodFSName).getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
-    public void fire (FireStrategy) {
-
+    public void fire() {
+        fs.fire(this);
     }
 
     public void paint(Graphics g) {
