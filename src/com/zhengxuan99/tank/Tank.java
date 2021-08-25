@@ -3,7 +3,7 @@ package com.zhengxuan99.tank;
 import java.awt.*;
 
 
-public abstract class Tank {
+public class Tank {
     public int getX() {
         return x;
     }
@@ -78,8 +78,8 @@ public abstract class Tank {
         rect.height = HEIGHT;
     }
 
-    public void fire (FireStrategy) {
-
+    public void fire () {
+        fs.fire(this);
     }
 
     public void paint(Graphics g) {
