@@ -4,3 +4,6 @@ tankSpeed=5
 bulletSpeed=10
 gameWidth=800
 gameHeight=600
+#fireStrategy
+goodFS=com.zhengxuan99.tank.FourDirFireStrategy
+badFS=com.zhengxuan99.tank.DefaultFireStrategy
