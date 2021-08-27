@@ -78,22 +78,10 @@ public class Tank {
         rect.width = WIDTH;
         rect.height = HEIGHT;
 
-<<<<<<< HEAD
-    public void fire () {
-=======
-        String goodFSName = (String) PropertyMgr.get("goodFS");
-        //System.out.println(goodFSName);
-
-        try {
-            fs = (FireStrategy)Class.forName(goodFSName).getDeclaredConstructor().newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
     public void fire() {
->>>>>>> 3b292ede1b3d50bb535832a946cbf60af3e1605e
+
         fs.fire(this);
     }
 
