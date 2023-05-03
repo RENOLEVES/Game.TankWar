@@ -1,45 +1,43 @@
-1.如何定义主站坦克的方向
+1.How to determine the direction of tank
     a.Enum Dir
-2.根据按键来改变主站坦克方向
+2.determine the direction by keys
     a.setMainTankDir();
-3.根据方向进行坦克的移动
-4.怎么样处理坦克静止状态
+3.Moving tank towards its direction
+4.Stand by
     a.moving = false
-5.想象如何给出更多的坦克、以及子弹
-    a.将坦克封装成类，理解面向对象设计中“封装”的思想
-6.用双缓冲解决闪烁的问题
+5.More tanks and bullets
+    a.class Tank and class Bullet
+6.Double buffer minimizes the lag
     a.repaint - update
-    b.截获update
-    c.首先把该画出来的东西（坦克、子弹）先画在内存的图片中，图片大小与游戏画面一致
-    d.把内存中图片一次性画到屏幕上（内存的内容复制到显存中）
-7.打出一颗子弹
-    a.按下Ctrl键，主战坦克打出一颗子弹
-    b.用面向对象的思想考虑
-8.打出一串子弹
-    a.将子弹装填再容器中
+    b.catch update
+    c.draw tanks and bullets to keep the frame stable
+    d.draw the whole thing at a time to the screen from memory
+7.single bullet shoot
+    a.press ctrl
+8.multiple bullets shoot
+    a.using a container
     
-1.将坦克换成图片
-    a.关于classloader的基础只是
-    b.显示图片，使用imageIO
+1.tank image replaces rect
+    a.classloader
+    b.imageIO
     c.
-2.将子弹换成图片
-3.将子弹从坦克中心位置打出
-    a.根据坦克图片的大小，和左上角的位置计算子弹左上角的位置
-4.加入敌军坦克
-    a.分拨Group
-5.子弹与敌军坦克的碰撞检测
-    a.击毁一辆坦克
-6.显示爆炸
-7.加入声音
-8.加入多辆敌军坦克
-9.让敌军坦克动起来
-10.加入操作
-11.加入声音
+2.bullet image replaces rect
+3.shoot the bullet from the middle of image 
+    a.calculate the bullet's position using left-top index of tank's image
+4.add enemy tank
+    a.separate party
+5.collision check when a bullet touches a tank
+    a.destory it(if from diff party)
+6.show explode anime when a tank dies
+7.add bullet sound
+8.add multiple enemy tanks
+9.enemy tanks movement
+10.add operation
+11.add background sound
 
-敌人坦克随机东，随机发射子弹
-边界检测
-解决new rectangle问题
+random shoots from enemy tanks
+border check
 
 12.code review and refactoring
-13.配置文件
-14.PropertyMr的单例问题
+13.deploy
+14.PropertyMr
